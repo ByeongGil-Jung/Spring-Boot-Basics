@@ -1,0 +1,18 @@
+>> application.properties 는 한글이 깨짐
+
+# [_1_adding_dependency]
+
+basepizza.name=Real New Normal Pizza
+basepizza.price=8000
+
+
+# [_2_tomcat_in_spring]
+
+# 1. 밑에는 서버 관련 설정을 build.gradle 에서 바꾸지 않고 property 에서 바꾸는 방식이다.
+
+# >> 이 명령어는 web 으로 실행 X
+# spring.main.web-application-type=none
+
+# >> 이 명령어는 port 번호를 바꿈 (하지만 best 는 아님 -> best 는 bean 을 통해 PortListener 를 만드는 것)
+# server.port=8088
+# server.port=0 이면 random port 로 할당 받는다.
