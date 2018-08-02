@@ -3,7 +3,7 @@ package com.example.springbootstart;
 import com.example.springbootstart.__1_spring_boot_principle._1_adding_dependency.AddingDependencyStarter;
 import com.example.springbootstart.__1_spring_boot_principle._2_tomcat_in_spring.TomcatInSpring;
 import com.example.springbootstart.__1_spring_boot_principle._3_http_https_http2.ProtocolCheckStarter;
-import com.example.springbootstart.__2_spring_boot_utilization._1_SpringApplication_and_eventListener.SpringApplicationStarter;
+import com.example.springbootstart.__2_spring_boot_utilization._1_SpringApplication_eventhandler_argumentshandling.SpringApplicationStarter;
 import org.apache.catalina.LifecycleException;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -38,6 +38,10 @@ public class SpringBootStartApplication {
                 break;
             case 2:
                 starter = new ProtocolCheckStarter();
+                starter.applicationStart(args);
+                break;
+            case 3:
+                starter = new SpringApplicationStarter();
                 starter.applicationStart(args);
                 break;
         }
