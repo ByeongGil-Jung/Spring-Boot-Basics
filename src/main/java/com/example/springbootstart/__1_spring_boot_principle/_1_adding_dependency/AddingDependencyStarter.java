@@ -1,4 +1,4 @@
-package com.example.springbootstart._1_adding_dependency;
+package com.example.springbootstart.__1_spring_boot_principle._1_adding_dependency;
 
 import com.example.BasePizza;
 import com.example.springbootstart.ApplicationStarter;
@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 /**
@@ -18,6 +17,19 @@ import org.springframework.stereotype.Component;
  * Date: 2018-08-01
  * Time: 오후 5:36
  */
+/*
+
+[ Spring Boot 에서 Bean 을 주입받는 원리와, 구동 완리 ]
+
+- @SpringBootApplication 을 통해 @ComponentScan 과 @EnableAutoConfiguration 이 순차적으로 실행된다.
+
+즉, Spring Boot 를 실행하면,
+1. @ComponentScan 으로 주입시킬 Bean 들을 찾는다. (@Component 등등 ... )
+2. 찾은 Bean 을 대상으로, @EnableAutoConfiguration 을 통해 어떤 옵션이 자동 설정 되어있는지 확인한다.
+(예를들어, 예제의 BasePizza 는 @ConditionalOnMissingBean 의 옵션이 있기에,
+커스텀한 Bean 이 있으면 AutoConfiguration 을 생략한다.)
+
+ */
 @Component
 public class AddingDependencyStarter implements ApplicationRunner, ApplicationStarter {
 
@@ -27,7 +39,7 @@ public class AddingDependencyStarter implements ApplicationRunner, ApplicationSt
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        System.out.println("\n === 1. Adding Dependency ===");
+        System.out.println("\n === 0. Adding Dependency ===");
         System.out.println(basePizza);
     }
 
@@ -66,7 +78,7 @@ public class AddingDependencyStarter implements ApplicationRunner, ApplicationSt
     */
 
     @Override
-    public void applicationStart(String... args) {
+    public void applicationStart(String[] args) {
         SpringApplication.run(SpringBootStartApplication.class, args);
     }
 }

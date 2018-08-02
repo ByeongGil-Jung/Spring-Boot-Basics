@@ -1,8 +1,9 @@
 package com.example.springbootstart;
 
-import com.example.springbootstart._1_adding_dependency.AddingDependencyStarter;
-import com.example.springbootstart._2_tomcat_in_spring.TomcatInSpring;
-import com.example.springbootstart._3_http_https_http2.ProtocolCheckStarter;
+import com.example.springbootstart.__1_spring_boot_principle._1_adding_dependency.AddingDependencyStarter;
+import com.example.springbootstart.__1_spring_boot_principle._2_tomcat_in_spring.TomcatInSpring;
+import com.example.springbootstart.__1_spring_boot_principle._3_http_https_http2.ProtocolCheckStarter;
+import com.example.springbootstart.__2_spring_boot_utilization._1_SpringApplication_and_eventListener.SpringApplicationStarter;
 import org.apache.catalina.LifecycleException;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -16,9 +17,12 @@ public class SpringBootStartApplication {
         ApplicationStarter starter;
 
         System.out.println("Select :");
+        System.out.println("\n [1 - Spring Boot Principle]");
         System.out.println("0: Basic server run");
         System.out.println("1: Tomcat in Spring (X)");
         System.out.println("2: http / https / http2 (h2)");
+        System.out.println("\n [2 - Spring boot Utilization]");
+        System.out.println("3: SpringApplication");
 
         Scanner sc = new Scanner(System.in);
         int i = sc.nextInt();
@@ -26,7 +30,7 @@ public class SpringBootStartApplication {
         switch (i) {
             case 0:
                 starter = new AddingDependencyStarter();
-                starter.applicationStart();
+                starter.applicationStart(args);
                 break;
             case 1:
                 TomcatInSpring tomcatInSpring = new TomcatInSpring();
@@ -34,7 +38,7 @@ public class SpringBootStartApplication {
                 break;
             case 2:
                 starter = new ProtocolCheckStarter();
-                starter.applicationStart();
+                starter.applicationStart(args);
                 break;
         }
     }

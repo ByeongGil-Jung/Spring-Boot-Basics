@@ -1,4 +1,4 @@
-package com.example.springbootstart._3_http_https_http2;
+package com.example.springbootstart.__1_spring_boot_principle._3_http_https_http2;
 
 import com.example.springbootstart.ApplicationStarter;
 import com.example.springbootstart.SpringBootStartApplication;
@@ -19,6 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
  * Time: 오후 7:59
  */
 /*
+
+[ 다양한 Protocol 을 사용하는 방법을 알고, 그 connector 만들기 ]
+
 1. https 사용 (9090)
 - 우선 ssl key 를 만들어야 함 (keytool.exe 활용)
 
@@ -37,7 +40,6 @@ C:\Users\계정이름\키 이름.keystore -validity 4000
 2. http 사용
 - http 1.1 을 사용한다.
 - 이 때 위의 https 와 다른 connector 를 생성하여, 서로 다른 port 로 진입하게 만든다. (8080)
-
 
  */
 @RestController
@@ -69,7 +71,7 @@ public class ProtocolCheckStarter implements ApplicationStarter {
     }
 
     @Override
-    public void applicationStart(String... args) {
+    public void applicationStart(String[] args) {
         SpringApplication.run(SpringBootStartApplication.class, args);
     }
 }

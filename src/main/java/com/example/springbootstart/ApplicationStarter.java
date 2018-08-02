@@ -9,5 +9,5 @@ package com.example.springbootstart;
  * Time: 오후 8:09
  */
 public interface ApplicationStarter {
-    public void applicationStart(String... args);
+    public void applicationStart(String[] args);
 }
