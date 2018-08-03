@@ -34,6 +34,9 @@ dependencies {
     // compile files('libs/파일명.jar')
     compile files('libs/addingdependency-spring-boot-starter-1.0-SNAPSHOT.jar')
 
+    // property 를 bean 으로 만들기 위해 필요햔 의존성 주입
+    annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
+
     runtime('com.h2database:h2')
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
