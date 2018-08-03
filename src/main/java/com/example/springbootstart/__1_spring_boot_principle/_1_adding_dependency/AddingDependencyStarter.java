@@ -39,7 +39,7 @@ public class AddingDependencyStarter implements ApplicationRunner, ApplicationSt
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        System.out.println("\n === 0. Adding Dependency ===");
+        System.out.println("\n=== 1-1. Adding Dependency ===");
         System.out.println(basePizza);
     }
 

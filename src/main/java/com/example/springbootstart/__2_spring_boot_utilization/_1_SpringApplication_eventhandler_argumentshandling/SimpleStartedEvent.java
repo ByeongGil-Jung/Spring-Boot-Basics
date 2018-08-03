@@ -17,7 +17,8 @@ public class SimpleStartedEvent implements ApplicationListener<ApplicationStarte
 
     @Override
     public void onApplicationEvent(ApplicationStartedEvent event) {
-        System.out.println("\n[ ApplicationStartedEvent ]");
+        System.out.println("\n=== 2-1. Event Listener ===");
+        System.out.println("[ ApplicationStartedEvent ]");
         System.out.println("The application has already run");
         System.out.println("(The context has already been made)");
     }

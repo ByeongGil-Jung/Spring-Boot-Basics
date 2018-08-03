@@ -30,8 +30,8 @@ public class SimpleStartingEvent implements ApplicationListener<ApplicationStart
 
     @Override
     public void onApplicationEvent(ApplicationStartingEvent event) {
-        System.out.println("\n=== 3. Event Listener ===");
-        System.out.println("\n[ ApplicationStartingEvent ]");
+        System.out.println("\n=== 2-1. Event Listener ===");
+        System.out.println("[ ApplicationStartingEvent ]");
         System.out.println("Starting Application");
         System.out.println("(The context has not been created yet)\n");
     }

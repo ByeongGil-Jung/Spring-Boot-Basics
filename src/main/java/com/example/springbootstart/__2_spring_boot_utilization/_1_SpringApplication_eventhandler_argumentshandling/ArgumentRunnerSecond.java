@@ -19,7 +19,7 @@ public class ArgumentRunnerSecond implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        System.out.println("\n=== 3. Arguments Runner [@Order(2)] ===");
+        System.out.println("\n=== 2-1. Arguments Runner [@Order(2)] ===");
         System.out.println("vmargs : " + args.containsOption("vmargs"));
         System.out.println("pargs : " + args.containsOption("pargs"));
     }
