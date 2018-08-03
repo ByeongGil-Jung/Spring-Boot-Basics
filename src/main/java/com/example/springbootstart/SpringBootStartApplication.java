@@ -6,6 +6,7 @@ import com.example.springbootstart.__1_spring_boot_principle._3_http_https_http2
 import com.example.springbootstart.__2_spring_boot_utilization._1_SpringApplication_eventhandler_argumentshandling.SpringApplicationStarter;
 import com.example.springbootstart.__2_spring_boot_utilization._2_external_settings.ExternalSettingsStarter;
 import com.example.springbootstart.__2_spring_boot_utilization._3_profile.ProfileStarter;
+import com.example.springbootstart.__2_spring_boot_utilization._4_logging.LoggingStarter;
 import org.apache.catalina.LifecycleException;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -27,6 +28,7 @@ public class SpringBootStartApplication {
         System.out.println("3: SpringApplication");
         System.out.println("4: External Settings");
         System.out.println("5: Profile");
+        System.out.println("6: Logging");
 
         Scanner sc = new Scanner(System.in);
         int i = sc.nextInt();
@@ -51,9 +53,15 @@ public class SpringBootStartApplication {
             case 4:
                 starter = new ExternalSettingsStarter();
                 starter.applicationStart(args);
+                break;
             case 5:
                 starter = new ProfileStarter();
                 starter.applicationStart(args);
+                break;
+            case 6:
+                starter = new LoggingStarter();
+                starter.applicationStart(args);
+                break;
         }
     }
 }

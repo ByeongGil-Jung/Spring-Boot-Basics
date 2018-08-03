@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+[2-4. logback-spring.xml 사용]
+ - 다양한 섬세한 log 설정을 할 수 있다.
+ - Spring 에서 다양한 method 의 도움을 받을 수 있다.
+-->
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+    <logger name="com.example.springbootstart.__2_spring_boot_utilization._4_logging.LoggingStarter" level="DEBUG"/>
+</configuration>
