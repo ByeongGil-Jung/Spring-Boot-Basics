@@ -52,11 +52,11 @@ public class MockControllerTest {
 
     @Test
     public void hello() throws Exception {
-        mockMvc.perform(get("/world"))
+        mockMvc.perform(get("/hello"))
                 // 200 임을 확인
                 .andExpect(status().isOk())
                 // 어떤 값이 찍히는지 확인
-                .andExpect(content().string("world JBK"))
+                .andExpect(content().string("hello JBK"))
                 // 어떤 메소드를 썼는지, 어떤 controller, 어떤 method 를 썼는지를 확인
                 .andDo(print());
     }

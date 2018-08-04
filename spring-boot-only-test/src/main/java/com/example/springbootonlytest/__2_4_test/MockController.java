@@ -27,6 +27,6 @@ public class MockController {
 
     @GetMapping("/hello")
     public String hello() {
-        return "world " + sampleService.getName();
+        return "hello " + sampleService.getName();
     }
 }

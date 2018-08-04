@@ -34,8 +34,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 - Junit 에 있는 Rule 을 확장해서 만든 것으로,
   log 를 비록하여 console 에 찍히는 모든 것을 출력한다.
 
--
-
  */
 @RunWith(SpringRunner.class)
 @WebMvcTest(OutputCaptureController.class)
