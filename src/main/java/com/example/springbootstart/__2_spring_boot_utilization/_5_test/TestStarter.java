@@ -1,4 +1,4 @@
-package com.example.springbootstart.__2_spring_boot_utilization._4_test;
+package com.example.springbootstart.__2_spring_boot_utilization._5_test;
 
 import com.example.springbootstart.ApplicationStarter;
 import com.example.springbootstart.SpringBootStartApplication;
