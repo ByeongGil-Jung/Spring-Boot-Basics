@@ -69,9 +69,23 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 @EnableConfigurationProperties(PizzaProperties.class) 을 붙여 줘야하지만,
 이미 @SpringBootApplication 에 자동으로 등록이 돼 있다.
 
+//////////////////////////////////////////////////////////////////////////////////////
+
+- @DurationUnit :: 시간 정보를 받을 수 있는 타입 (Spring Boot 가 제공하는 독특한 타입임)
+
+@DurationUnit(ChronoUnit.SECONDS)
+을 붙인다면 application.properties 에서 단순히 숫자만 입력해도 된다.
+
+하지만 붙이지 않고 그냥 사용할 수도 있는데, 이럴 경우
+-> application.properties 에서
+30s
+와 같이 뒤에 시간 단위를 붙여야 한다 !
+
+//////////////////////////////////////////////////////////////////////////////////////
+
+- @Validate :: property 의 값을 검증하는데 쓸 수 있다.
+
  */
-
-
 public class ExternalSettingsStarter implements ApplicationStarter {
 
     @Override

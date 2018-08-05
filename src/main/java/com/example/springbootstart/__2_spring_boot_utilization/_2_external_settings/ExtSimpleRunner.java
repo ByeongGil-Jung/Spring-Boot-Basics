@@ -22,6 +22,18 @@ application.properties 에서 설정한 값을
 >> @Value("${설정 값}")
 을 이용하여 사용할 수 있다.
 
+이것은 굉장히 type-safe 하다.
+(properties 에서의 값이 type-safe 한 것이 아니라,
+method 를 통해서 호출하기에 type 에 대해 안전하다는 의미.)
+
+-> 밑의 type-conversion 과 연결된다.
+
+/////////////////////////////////////////////////////////////////////////////
+
+- 또한, Type-Conversion 을 지원한다.
+(application.properties 의 값들은 실제론 모두 문자열이다.
+하지만 실제 bean 에서 값으로 등록될 땐 해당하는 type 으로 변환된다.)
+
 */
 @Component
 public class ExtSimpleRunner implements ApplicationRunner {

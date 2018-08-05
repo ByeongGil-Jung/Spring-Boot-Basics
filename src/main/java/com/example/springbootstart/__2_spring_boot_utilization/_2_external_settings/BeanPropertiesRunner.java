@@ -27,5 +27,6 @@ public class BeanPropertiesRunner implements ApplicationRunner {
         System.out.println("(bean) name : " + beanProperties.getName());
         System.out.println("(bean) price : " + beanProperties.getPrice());
         System.out.println("(bean) fullName : " + beanProperties.getFullName());
+        System.out.println("(bean - duration) sec : " + beanProperties.getSessionTimeout());
     }
 }
