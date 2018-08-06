@@ -1,4 +1,4 @@
-package com.example.springbootwebmvc.user;
+package com.example.springbootwebmvc.pizza;
 
 /**
  * Created by IntelliJ IDEA.

@@ -1,4 +1,4 @@
-package com.example.springbootwebmvc.user;
+package com.example.springbootwebmvc.pizza;
 
 import org.springframework.web.bind.annotation.*;
 
