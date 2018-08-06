@@ -6,12 +6,12 @@ import org.springframework.web.bind.annotation.*;
  * Created by IntelliJ IDEA.
  * Project: spring-boot-start
  * ===========================================
- * User: ByeongGil Jung
+ * Pizza: ByeongGil Jung
  * Date: 2018-08-06
  * Time: 오전 2:28
  */
 @RestController
-public class UserController {
+public class PizzaController {
 
     @GetMapping("/hello")
     public String hello() {
@@ -19,9 +19,9 @@ public class UserController {
     }
 
     // HttpMessageConverter 사용
-    @PostMapping("/users/create")
+    @PostMapping("/pizzas/create")
     /*
-    public @ResponseBody User create(@RequestBody User user) {
+    public @ResponseBody Pizza create(@RequestBody Pizza pizza) {
 
     원래는 이 형식인데,
     @RestController 가 붙은 상황에서는,
@@ -31,7 +31,7 @@ public class UserController {
     */
 
     // 여기선 Json 을 받아서 JsonMessageConverter 를 사용한다고 가정할 것이다.
-    public User create(@RequestBody User user) {
-        return user;
+    public Pizza create(@RequestBody Pizza pizza) {
+        return pizza;
     }
 }

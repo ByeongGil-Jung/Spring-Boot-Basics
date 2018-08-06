@@ -4,12 +4,12 @@ package com.example.springbootwebmvc.user;
  * Created by IntelliJ IDEA.
  * Project: spring-boot-start
  * ===========================================
- * User: ByeongGil Jung
+ * Pizza: ByeongGil Jung
  * Date: 2018-08-06
  * Time: 오전 3:06
  */
 
-public class User {
+public class Pizza {
 
     private String name;
 

@@ -26,6 +26,11 @@ repositories {
 
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
+
+    // JSON - XML converter 의존성 주입
+    // == compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-xml', version: '2.9.6'(버전 중 최신)
+    compile('com.fasterxml.jackson.dataformat:jackson-dataformat-xml')
+
     runtime('org.springframework.boot:spring-boot-devtools')
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
