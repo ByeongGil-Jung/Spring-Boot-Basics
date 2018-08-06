@@ -96,7 +96,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
       spring.mvc.static-path-pattern=/static/**
       을 준다면,
 
-      localhost:8080/hello.html -> localhost:8080/static/hello.html
+       >> localhost:8080/hello.html -> localhost:8080/static/hello.html
 
       로 접근해야 한다.
 
@@ -135,6 +135,49 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  이는 ResourceHttpRequestHandler 가 처리한다
 
  last modified 라는 header 정보를 보고, 그 후에 modify 되었으면 (If-Modified-Since) 200 status 를 뱉는다.
+
+
+==============================================================================================
+
+[ 5. Web jar ]
+
+ - Web jar ?
+   :: client 에서 사용하는 javascript 라이브러리들을 jar 파일로 추가할 수 있다. (즉, 일종의 의존성이다.)
+      (jquery, bootstrap, react, vue, angular, ... 등등 사용 가능)
+
+   - template 를 사용하여 동적으로 생성된 content 에서, 혹은
+     static 내부의 정적 resource 에서 참조하여 사용 가능하다.
+
+ -> gradle(maven) 의 의존성 주입에서 추가할 수 있다.
+
+ ex)
+ jQuery 를 넣는다면,
+
+  >> compile('org.webjars.bower:jquery:3.3.1')
+
+ 와 같이 추가하고,
+ html 에
+
+  <script src="/webjars/jquery/3.3.1/dist/jquery.min.js" type="text/javascript"></script>
+
+ 를 넣음으로써 사용할 수 있다.
+
+
+ - webjars-locator-core
+   :: Web jar 를 등록하고, html 내에서 javascript 를 호출할 때 버전을 안적어줘도 되게 하는 의존성이다.
+   (원리는 resource chaining 과 관련이 있다.)
+
+ 의존성에
+
+  >> compile('org.webjars:webjars-locator-core')
+
+ 를 주입하면,
+
+  <script src="/webjars/jquery/dist/jquery.min.js" type="text/javascript"></script>
+
+ 와 같이 버전을 생략할 수 있다. (-> 유지보수에 용이하게 만든다.)
+
+ -- 그런데 예제로 만든 html 에선 왜 안되는지 잘 모르겠다.
 
  */
 

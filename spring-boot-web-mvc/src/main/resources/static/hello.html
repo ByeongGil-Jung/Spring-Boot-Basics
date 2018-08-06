@@ -3,6 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Hello Spring</title>
+    <!-- Web jar 에서 jQuery 추가하기 -->
+    <!--
+    기본적으로는 아래와 같이 버전 (3.3.1) 을 명시해주는 것이 맞다.
+    <script src="/webjars/jquery/3.3.1/dist/jquery.min.js" type="text/javascript"></script>
+
+    하지만, webjars-locator-core 라는 의존성이 주입되어 있다면, 버전을 명시해주지 않아도 된다 !
+
+    그런데 안된다... 왜 안되는지 모르겠다 ...
+
+    <script src="/webjars/jquery/dist/jquery.min.js" type="text/javascript"></script>
+    -->
+    <script src="/webjars/jquery/3.3.1/dist/jquery.min.js" type="text/javascript"></script>
+    <script>
+        $(document).ready(function(){
+            alert("ready !");
+        })
+    </script>
 </head>
 <body>
 <p>Hello Spring ~ Testing for static resources</p>
