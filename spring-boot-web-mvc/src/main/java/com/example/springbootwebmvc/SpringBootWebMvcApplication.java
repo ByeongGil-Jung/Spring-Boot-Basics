@@ -179,6 +179,22 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
  -- 그런데 예제로 만든 html 에선 왜 안되는지 잘 모르겠다.
 
+
+==============================================================================================
+
+[ 6. Index Page, Favicon ]
+
+ - Index Page
+   :: Index Page == index.html (root 를 요청했을 때 나오는 Page)
+   (아직 동적 page 를 접하지 않았으니, static resource 로 만들 것임)
+
+ (1) index page
+ -> resource 폴더(위 참조)에서 index.html 을 만들면 Spring 에서 알아서 찾는다.
+
+ (2) favicon
+ -> resource 폴더에서 favicon.ico 를 넣으면 알아서 찾는다.
+
+
  */
 
 @SpringBootApplication
