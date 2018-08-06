@@ -26,6 +26,7 @@ repositories {
 
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.springframework.boot:spring-boot-starter-thymeleaf')
 
     // JSON - XML converter 의존성 주입
     // == compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-xml', version: '2.9.6'(버전 중 최신)

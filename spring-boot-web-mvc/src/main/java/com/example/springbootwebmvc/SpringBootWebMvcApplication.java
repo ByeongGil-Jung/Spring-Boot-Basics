@@ -195,6 +195,51 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  -> resource 폴더에서 favicon.ico 를 넣으면 알아서 찾는다.
 
 
+==============================================================================================
+
+[ 7. Thymeleaf ]
+
+ - Thymeleaf ?
+   :: 비교적 최근에 만들어진 동적 contents 를 생성할 수 있는 템플릿 엔진 중 하나로, MVC 에서 주로 View 를 만드는 데 사용된다.
+
+   - 학습이 비교적 필요한 템플릿이다.
+   - resources/templates 폴더에서 그 파일들을 찾는다.
+
+   (템플릿 엔진을 쓰는 이유 ?
+     -> template 내부에 들어가는 값들이 경우에 따라 바뀔 때, 정적인(static) resource 를 사용할 수 없게 된다.
+     -> 이런 경우 동적으로 content 를 생성해서 제공해줘야 하는데, 이런 경우 template 엔진을 유용하게 사용할 수 있다.
+
+   (템플릿 엔진 중 JSP 를 지양하는 이유 ?
+     -> Spring Boot 가 지향하는 방향과 다르다.
+        (Spring Boot 는 독립적으로 실행 가능한 내장 톰캣으로 application 을 빠르고 쉽게 만들어서 배포하길 원함.
+         하지만 JSP 를 사용하게 되면, jar 패키징을 못하고 war 패키징을 해야만 한다.
+         또한 Undertow 가 JSP 를 지원하지 않는다.
+         또한 JSP 에 대한 의존성을 넣으면, Spring Boot 내에서 의존성에 대해 문제가 발생할 수 있다.)
+
+ - 사용
+   - html
+   html 네임스페이스에
+    >> <html xmlns:th="http://www.thymeleaf.org"> ~ </html>
+   을 넣어줘야 thymeleaf 문법 사용이 가능하다.
+
+   - Controller
+
+    // parameter 인 model 은 Model 의 데이터를 받을 객체이다.
+    // return 하는 String 은 view 의 이름이다.
+    // (@RestController 처럼 response 의 본문을 띄워주지 않는다.)
+    @GetMapping("/thyme")
+    public String thyme(Model model) {
+        // Model 에 정보를 담아야 한다. -> Map 과 같이 사용한다.
+        model.addAttribute("name", "Bread");
+        return "thyme"; // view 의 이름
+    }
+
+    를 보면 충분히 알 수 있지 않을까 싶다.
+
+ - 장점 ?
+   - 실제로 서버를 작동시켜야 볼 수 있는 jsp 와는 달리, html 로 되어 있어 자체적으로 구동 가능하다.
+   - 값이 없을 경우 default 값을 출력시키므로, 안전하다.
+
  */
 
 @SpringBootApplication

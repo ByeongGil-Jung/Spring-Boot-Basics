@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<!-- 밑의 xmlns:th="http://www.thymeleaf.org" 을 넣어줘야 한다. -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello Thymeleaf ~</title>
+</head>
+<body>
+    <h1>Hello Thymeleaf ~</h1>
+    <!-- 만약 ${name} 의 값이 없으면 Name 을 출력하고, 아니면 전달받은 값을 출력한다. -->
+    <p>name : </p>
+    <p th:text="${name}">Name</p>
+</body>
+</html>
