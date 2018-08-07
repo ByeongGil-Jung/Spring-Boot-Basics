@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class ThymeController {
 
-    // parameter 인 model 은 Model 의 데이터를 받을 객체이다.
-    // return 하는 String 은 view 의 이름이다.
+    // parameter 인 Model 은 데이터, 정보 등을 받을 받을 객체이다.
+    // return 하는 String 값은 view 의 이름이다.
     // (@RestController 처럼 response 의 본문을 띄워주지 않는다.)
     @GetMapping("/thyme")
     public String thyme(Model model) {

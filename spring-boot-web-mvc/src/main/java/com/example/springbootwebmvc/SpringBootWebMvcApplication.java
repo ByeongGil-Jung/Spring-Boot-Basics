@@ -240,6 +240,23 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
    - 실제로 서버를 작동시켜야 볼 수 있는 jsp 와는 달리, html 로 되어 있어 자체적으로 구동 가능하다.
    - 값이 없을 경우 default 값을 출력시키므로, 안전하다.
 
+
+==============================================================================================
+
+[ 8. HtmlUnit ]
+
+ - Html 을 단위 테스트하기 위한 툴 중 하나.
+ -> HtmlUnit 의 의존성을 추가해줘야 함
+
+ WebClient 객체를 만들어서 사용함.
+
+ -> html 을 좀 더 섬세하게 Test 할 수 있음.
+ (MockMvc 를 사용해도 좋지만, MockMvc 는 controller, model 단에서 test 하기 용이함)
+
+ // HtmlUnit 의존성 추가 (in test)
+    testcompile('org.seleniumhq.selenium:htmlunit-driver')
+    testcompile('net.sourceforge.htmlunit:htmlunit')
+
  */
 
 @SpringBootApplication
