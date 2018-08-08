@@ -257,6 +257,43 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
     testcompile('org.seleniumhq.selenium:htmlunit-driver')
     testcompile('net.sourceforge.htmlunit:htmlunit')
 
+
+==============================================================================================
+
+[ 9. Exception Handler ]
+
+ - Spring Boot 가 지원하는 Spring MVC Error Handler
+  -> Spring Boot Application 에선 기본적으로 Error Handler 가 탑재되어 있다.
+
+ ex)
+  -> BasicErrorController (Spring Boot 가 제공하는 기본 예외 처리기)
+  (HTML 과 JSON 응답으로 에러 메세지를 표현)
+ index page 를 만들지 않았을 때 html 로 접속했을 떄 보이는 화면.
+ 만약 console 등 (Machine Client) 에서 접근하려 하면 JSON 으로 error message 를 출력한다.
+
+ ---------------------------------------------------------------------------------------
+
+ - BasicErrorController (Spring Boot 가 제공하는 기본 예외 처리기)
+   :: HTMl 과 JSON 응답 지원
+
+ - Spring MVC 예외 처리 방법
+  - @ControllerAdvice
+    :: 예제에서 ExceptionController
+    (여기선 학습을 위해 어노테이션으로 @Controller 를 붙인다.)
+
+    ////
+    -> 나중에 시간 나면 @ControllerAdvice 공부 할 것
+
+  - 커스텀 에러 페이지
+   (위의 방법보다 훨씬 편리하다.)
+   :: 상태 코드 값에 따라 에러 페이지를 보여준다.
+
+   -> static 이나 templates 에서 에러 페이지를 만든다.
+
+   이 때,
+   404.html 과 같이 error 를 정확하게 명시해 줄 수 있고,
+   5xx.html 과 같이 500 번대 error 들을 두루뭉실하게 redirect 시킬 수 있다.
+
  */
 
 @SpringBootApplication
