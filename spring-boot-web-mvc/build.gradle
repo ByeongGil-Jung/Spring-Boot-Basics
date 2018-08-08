@@ -28,15 +28,24 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
     compile('org.springframework.boot:spring-boot-starter-thymeleaf')
 
-    // JSON - XML converter 의존성 주입
-    // == compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-xml', version: '2.9.6'(버전 중 최신)
-    compile('com.fasterxml.jackson.dataformat:jackson-dataformat-xml')
+    /*
+     JSON - XML converter 추가
+     == compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-xml', version: '2.9.6'(버전 중 최신)
+     이것을 추가하면 @RestController 에서 return 의 default 가 XML 이 된다.
+     (즉, Spring Boot 의 default 인 JSON 으로 나오지 않는다!)
+
+     따라서 일단 주석처리 한다 ...
+     */
+    // compile('com.fasterxml.jackson.dataformat:jackson-dataformat-xml')
     
     // webjar - jQuery 추가
     compile('org.webjars.bower:jquery:3.3.1')
 
-    // webjars-locator-core :: webjar 를 등록하고, html 내에서 javascript 를 호출할 때 버전을 안적어줘도 됨 !
+    // webjars-locator-core 추가 (webjar 를 등록하고, html 내에서 javascript 를 호출할 때 버전을 안적어줘도 됨 !)
     compile('org.webjars:webjars-locator-core')
+
+    // hateoas 추가
+    compile('org.springframework.boot:spring-boot-starter-hateoas')
 
     // HtmlUnit 의존성 추가 (in test)
     testCompile('org.seleniumhq.selenium:htmlunit-driver')

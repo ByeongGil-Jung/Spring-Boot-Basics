@@ -41,6 +41,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
  (만약 return 형태가 String, int 등등... 이면 StringMessageConverter 가 사용된다. -> 모두 String 으로 타입 변환)
 
+
 ==============================================================================================
 
 [ 3. ViewResolver ]
@@ -61,6 +62,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
   하지만 XML message 로 converting 할 수 있는 MessageConverter 가 없기 때문에,
   jackson-dataformat-xml 을 의존성으로 주입해주었다.
+
 
 ==============================================================================================
 
@@ -241,6 +243,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
    - 값이 없을 경우 default 값을 출력시키므로, 안전하다.
 
 
+ **
+ -> 따로 공부를 해보도록 하자.
+
+
 ==============================================================================================
 
 [ 8. HtmlUnit ]
@@ -293,6 +299,90 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
    이 때,
    404.html 과 같이 error 를 정확하게 명시해 줄 수 있고,
    5xx.html 과 같이 500 번대 error 들을 두루뭉실하게 redirect 시킬 수 있다.
+
+
+==============================================================================================
+
+[ 10. HATEOAS ]
+
+ - HATEOAS (Hypermedia As The Engine Of Application State) 란 ?
+   (서버)
+    > 현재 resource 와 '연관된 링크 정보' 를 클라이언트에 제공한다.
+   (클라이언트)
+    > '연관된 링크 정보' 를 바탕으로 resource 에 접근한다.
+
+   ('연관된 링크 정보' ??)
+    > Relation (rel)
+    > Hypertext Reference (href)
+
+   < 개념 ex >
+   만약 root 페이지에 대한 resource 를 요청했다고 가정하자. (연관된 내용은 books 라고 가정)
+   : 요청한 페이지 - 현재 (relation = self, link(href) = "/root")
+   : 연관된 링크 (relation = books, link(href) = "/books")
+
+   ->
+   client 입장에선
+   root 를 요청한 다음에, root 와 연결된 resource 에는 books 가 있구나
+   라는 것을 알게 된다.
+
+   < Reference ex >
+   :: https://spring.io/understanding/HATEOAS
+    {
+        "content": [ {
+            "price": 499.00,
+            "description": "Apple tablet device",
+            "name": "iPad",
+            "links": [ {
+                "rel": "self",
+                "href": "http://localhost:8080/product/1"
+            } ],
+            "attributes": {
+                "connector": "socket"
+            }
+        }, {
+            "price": 49.00,
+            "description": "Dock for iPhone/iPad",
+            "name": "Dock",
+            "links": [ {
+                "rel": "self",
+                "href": "http://localhost:8080/product/3"
+            } ],
+            "attributes": {
+                "connector": "plug"
+            }
+        } ],
+        "links": [ {
+            "rel": "product.search",
+            "href": "http://localhost:8080/product/search"
+        } ]
+    }
+
+
+ - Spring 에선 HATEOAS 를 구현하기 위한 편리한 툴이라고 생각하면 된다.
+
+ - dependency 를 추가하면, 다양한 자동설정을 제공 및 메소드를 사용 가능하다.
+  >> compile('org.springframework.boot:spring-boot-starter-hateoas')
+
+  그 중 특히 유용한 것은,
+  (1) ObjectMapper
+    :: 제공하는 resource 를 JSON 으로 변환할 때 사용하는 interface.
+       (사실, hateoas 를 주입하지 않아도, Spring Boot Web 에 내장되어 있다.)
+
+    - spring.jackson.* 라이브러리에서 제공
+
+    -> 자세한 내용은 test 의 HateoasControllerTest 클래스 참조
+
+  (2) LinkDiscovers (사용하게 될 일이 많지 않을 것)
+    :: xpath 를 확장해서 만든 hateoas 용 client API 이다.
+
+    > REST API 를 통해 다른 서버에서 데이터를 받아왔는데,
+      그것이 hateoas 를 지원 할 경우, ("_links" 정보들이 있음 등등 ...)
+      손쉽게 self 에 해당하는 link 정보를 가져올 수 있다.
+
+      (유틸리티 성 클래스이다.)
+
+ **
+ -> REST_API 를 견고하게 만들고 싶담녀 따로 공부를 해보도록 하자...
 
  */
 

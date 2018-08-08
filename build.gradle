@@ -29,16 +29,6 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-thymeleaf')
     compile('org.springframework.boot:spring-boot-starter-web')
 
-    /*
-    [ Spring Boot Devtools ]
-    - 캐시 설정을 개발 환경에 맞춰 설정 가능하다.
-      (default 로 캐시를 다 끄고, h2 console 을 키며, 등등 ... )
-    - Live Template 를 적용한다.
-      - 서버를 재시작 할 필요 없다.
-      - Build 를 통해 실행 가능하다.
-     */
-    compile("org.springframework.boot:spring-boot-devtools")
-
     // 로컬에서의 jar file import - 의존성 주입
     // jar 파일을 libs 폴더 내로 옮긴 후,
     // compile files('libs/파일명.jar')
@@ -47,6 +37,15 @@ dependencies {
     // property 를 bean 으로 만들기 위해 필요햔 의존성 주입
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 
+    /*
+    [ Spring Boot Devtools ]
+    - 캐시 설정을 개발 환경에 맞춰 설정 가능하다.
+      (default 로 캐시를 다 끄고, h2 console 을 키며, 등등 ... )
+    - Live Template 를 적용한다.
+      - 서버를 재시작 할 필요 없다.
+      - Build 를 통해 실행 가능하다.
+     */
+    runtime("org.springframework.boot:spring-boot-devtools")
     runtime('com.h2database:h2')
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
