@@ -43,7 +43,7 @@ public class BeanProperties {
     private String name;
 
     // min, max 값 사이에 있지 않으면 에러를 뱉게 하는 validation
-    @Size(min=0, max=8000)
+    // @Size(min=3000, max=5000)
     private int price;
 
     private String fullName;

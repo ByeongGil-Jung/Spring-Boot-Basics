@@ -382,7 +382,41 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
       (유틸리티 성 클래스이다.)
 
  **
- -> REST_API 를 견고하게 만들고 싶담녀 따로 공부를 해보도록 하자...
+ -> REST_API 를 견고하게 만들고 싶다면 따로 공부를 해보도록 하자 ...
+
+
+==============================================================================================
+
+[ 11. CORS ]
+
+ - CORS (Cross-Origin Resource Sharing) 란?
+   :: Single-Origin Policy 를 우회하기 위한 표준 기술로,
+      서로 다른 Origin 끼리 resource 를 share 할 수 있는 방법을 제공하는 표준 기술
+
+   * Origin : { http(s) uri (스키마) / hostname (도메인) / port } 를 조합한 것을 하나의 origin 이라 한다.
+    -> 일반적으로, 같은 서버 내에서 하나의 origin 은, 또 다른 origin 을 호출 할 수 없다.
+   * Single-Origin Policy : 같은 Origin 에만 request 를 보낼 수 있는 policy
+
+   ex)
+    REST API 를 제공하는 서버가 http-localhost-8080 에서 제공이 되고 있다고 가정.
+    http-localhost-18080 에서 사용되는 application 이
+    위의 8080 포트에 request 를 보내어 접근하는 것이 불가능하다 !
+
+    -> Single-Origin Policy 에 위반되기 때문 !
+
+ - Spring Boot 는 CORS 를 자동으로 지원하기 떄문에 따로 설정하지 않아도 된다 !
+   (원래 Spring MVC 에선 여러가지 bean 설정을 해줘야 한다.)
+
+ (1) @Controller 나 @RequestMapping 에 추가하여 사용한다.
+    -> CorsController 클래스 참조.
+
+    (@CrossOrigin 어노테이션을 붙여서 설정 가능)
+
+ (2) WebMvcConfigurer 를 통해 설정 가능
+    -> CORS 를 CorsController 에서 처럼 하나하나 등록해주기 번거롭거나, global 하게 설정할 경우.
+    -> WebConfig 클래스 참조.
+
+    (addCorsMappings 를 @Override 해서 사용한다.)
 
  */
 
