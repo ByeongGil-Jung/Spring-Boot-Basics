@@ -68,6 +68,37 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
     >> spring.datasource.hikari.maximum-pool-size=4
    와 같이 설정한다.
 
+
+[ 4. ORM, JPA, Spring Data JPA (SDJ) 개요 ]
+
+ - ORM (Object-Relational Mapping) 란 ?
+   :: 객체와 relation 을 mapping 할 때 발생하는 개념적 불일치를 해결하는 프레임워크
+
+ - JPA (Java Persistence API) 란 ?
+   :: 여러가지 ORM 솔루션 중에서, Java 표준을 정한 것
+
+   - 대부분의 JPA 스펙은 Hibernate 기반으로 만들어져 있음.
+     (하지만, Hibernate 의 모든 기능을 JPA 에서 커버하지 않는다.
+     -> 따라서 경우에 따라서 Hibernate 의 설정을 따로 해줘야 한다.)
+
+     -> 즉, Hibernate 를 사용해도 크게 지장은 없다.
+
+ - Spring Data JPA (SDJ) 란 ?
+   :: JPA 표준 스펙을 쉽게 사용할 수 있게끔 Spring Data 로 추상화 시켜놓은 것이다.
+
+   -> 그렇기 때문에 JPA ORM 을 쉽게 사용할 수 있다.
+   -> JPA 의 구현체는 Hibernate 를 사용한다.
+      (JPA Entity Manager 로 wrapping 해서 사용한다.)
+
+   1. Repository bean 자동 생성
+   2. 쿼리 method 자동 구현
+   3. @EnableJpaRepositories (스프링 부트가 자동으로 설정 해줌)
+
+   (구현 및 상속 순서)
+   Spring Data JPA (SDJ) <- JPA <- Hibernate <- Datasource
+
+   즉, SDJ 를 사용하면 Datasource 의 method 뿐만 아니라, Hibernate 및 JPA 의 기능까지 모두 사용할 수 있는 것이다.
+
 */
 
 @SpringBootApplication

@@ -27,6 +27,9 @@ repositories {
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-jdbc')
     compile('org.springframework.boot:spring-boot-starter-web')
+
+    // JPA dependency 추가
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
     
     // 'MariaDB connector' dependency 추가
     compile('org.mariadb.jdbc:mariadb-java-client')
