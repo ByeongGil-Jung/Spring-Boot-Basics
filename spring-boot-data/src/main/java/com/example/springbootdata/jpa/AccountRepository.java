@@ -21,10 +21,10 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
     @Query(nativeQuery = true, value = "SELECT * FROM springuser WHERE name = '{0}'")
     (하지만 기본값은 JPQL 이다. (nativeQuery 가 아니다.))
     */
-    Account findByUserName(String username);
+    Account findByUsername(String username);
 
     /*
-    또한, Optional<T> 를 통해
+    또한, Optional<T> 의 형태로 만들 수 있다.
      */
-    // Optional<Account> findByUserName(String username);
+    Optional<Account> findByPassword(String password);
 }

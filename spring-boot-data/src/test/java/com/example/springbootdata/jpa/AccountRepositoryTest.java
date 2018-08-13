@@ -11,6 +11,7 @@ import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.SQLException;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -23,8 +24,8 @@ import static org.assertj.core.api.Assertions.assertThat;
  * Time: 오후 5:06
  */
 
-// 여기선 Slicing Test 로 만들 것임. (In-memory Database 가 반드시 필요하다. -> 여기선 H2 를 테스트용으로 사용)
-// -> Repository 와 관련된 bean 들만 등록해서 test 를 만드는 것임 (repository 포함)
+// 여기선 Slicing Test 로 만들 것. (In-memory Database 가 반드시 필요하다. -> 여기선 H2 를 테스트용으로 사용)
+// -> Repository 와 관련된 bean 들만 등록해서 test 를 만드는 것 (repository 포함)
 @RunWith(SpringRunner.class)
 @DataJpaTest // Slicing Test 용 어노테이션
 /*
@@ -48,10 +49,11 @@ public class AccountRepositoryTest {
     public void di() throws SQLException {
         try (Connection connection = dataSource.getConnection()) {
             DatabaseMetaData metaData = connection.getMetaData();
+            System.out.println("\n [ Information of Metadata ]");
             System.out.println("Class : " + metaData.getClass());
             System.out.println("Driver Name : " + metaData.getDriverName());
             System.out.println("URL : " + metaData.getURL());
-            System.out.println("Username : " + metaData.getUserName());
+            System.out.println("Username : " + metaData.getUserName() + "\n");
         }
 
         // DB 에 넣는 Test
@@ -66,13 +68,24 @@ public class AccountRepositoryTest {
         // value 가 있는지 확인
         assertThat(saveAccount).isNotNull();
 
-        // userName 을 통해 쿼리문을 조회할 수 있는데, 임의로 만들 수 있다.
+        // [ 1. 일반적인 Entity ]
+        // username 을 통해 쿼리문을 조회할 수 있는데, 임의로 만들 수 있다.
         // 올바른 데이터일 경우
-        Account existingAccount = accountRepository.findByUserName(saveAccount.getUsername());
-        assertThat(existingAccount).isNotNull();
+        Account existingAccountByUsername = accountRepository.findByUsername(saveAccount.getUsername());
+        assertThat(existingAccountByUsername).isNotNull();
 
         // 올바르지 않은 데이터일 경우
-        Account nonExistingAccount = accountRepository.findByUserName("Chicken");
-        assertThat(nonExistingAccount).isNull();
+        Account nonExistingAccountByUsername = accountRepository.findByUsername("Chicken");
+        assertThat(nonExistingAccountByUsername).isNull();
+
+
+        // [ 2. Optional<Object> 형태인 경우 ]
+        // 올바른 데이터일 경우
+        Optional<Account> existingAccountByPassword = accountRepository.findByPassword(saveAccount.getPassword());
+        assertThat(existingAccountByPassword).isNotEmpty();
+
+        // 올바르지 않은 데이터일 경우
+        Optional<Account> nonExistingAccountByPassword = accountRepository.findByPassword("5678");
+        assertThat(nonExistingAccountByPassword).isEmpty();
     }
 }

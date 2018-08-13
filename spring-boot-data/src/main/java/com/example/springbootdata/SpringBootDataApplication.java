@@ -112,6 +112,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  1. H2 DB 를 테스트 dependency 에 추가하기
  2. @DataJpaTest (슬라이스 테스트) 작성
 
+ -> Slicing Test 를 할 것이다.
+   :: Slicing Test 란 Repository 와 관련된 bean 들만 등록해서 test 를 만드는 것.
+   - In-memory DB 가 필요하며, 여기선 H2 를 사용할 것임
+
  ++)
   @SpringBootTest 를 통해 Test 할 수 도 있는데,
   이는 모든 bean 설정을 사전에 스캔하기 때문에 H2 가 아닌 MariaDB 로 테스트를 하게 된다.
