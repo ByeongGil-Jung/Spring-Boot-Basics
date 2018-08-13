@@ -112,6 +112,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  1. H2 DB 를 테스트 dependency 에 추가하기
  2. @DataJpaTest (슬라이스 테스트) 작성
 
+ (Test 에선 자동으로 DB 를 만들어준다.)
+
  -> Slicing Test 를 할 것이다.
    :: Slicing Test 란 Repository 와 관련된 bean 들만 등록해서 test 를 만드는 것.
    - In-memory DB 가 필요하며, 여기선 H2 를 사용할 것임
@@ -122,6 +124,56 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
   -> 이 방법은 테스트에서 데이터 변화가 일어날 경우, 실제 Application 의 데이터에도 변화가 일어난다.
   -> 따라서 In-memory DB 인 H2 를 이용하는 것이 테스트 상 안전하다.
+
+
+[ 6. 데이터베이스 초기화 ]
+- jpa 패키지에서 계속 진행
+
+ (1) JPA 를 사용한 데이터베이스 초기화
+
+   1. spring.jpa.hibernate.ddl-auto=?
+
+    (develop 상황)
+    update : app 실행 시에 기존 스키마를 유지하고, 이후에 변경된 사항을 적용한다.
+    create : app 실행 시에 기존 스키마를 삭제하고, 새로운 스키마를 만든다.
+    create-drop : app 실행 시에 스키마를 생성하고, 종료 시에 스키마를 삭제한다.
+
+    (deploy 상황)
+    validate : 실제로 운영하는 db 에서 사용하며, Entity 와 db 사이의 mapping 이 잘 이루어졌는지 확인한다.
+    -> 즉, 운영되는 db 와 비교했을 때, 갑자기 Entity 의 구조가 바뀐다면 error 를 내뱉게 된다. (missing column)
+    (적용하기 위해선, spring.jpa.generate-dll=false 로 해줘야 한다.)
+
+   2. spring.jpa.generate-dll=true
+
+   의 두 과정을 통해 JPA 를 사용하여 데이터베이스를 초기화 할 수 있다.
+
+ (2) SQL 스크립트를 사용한 데이터베이스 초기화
+   - schema.sql 또는 schema-${platform}.sql (1 순위)
+   - data.sql 또는 data-${platform}.sql (2 순위)
+   - ${platform} 값은 spring.datasource.platform 으로 설정 가능
+
+   >> application.properties 참조
+
+
+ < 개발 시 방향 >
+
+   (1 - 개발 초기)
+   개발 초기에는,
+     >> spring.jpa.hibernate.ddl-auto=update
+   로 쓴다.
+
+   (2 - 배포 시기)
+   배포 할 때 쯤, test 코드에서 깔끔한 schema 를 생성하도록 쭉 만든다.
+   이후 console 등과 같이 출력된 값을 schema.sql 에 복사해서 쓴다.
+   (-> 이러면 굉장히 깔끔한 schema 코드를 완성할 수 있다.)
+
+   (update 로 설정하고 개발을 하게 되면, schema 가 굉장히 지저분해진다.
+    이름을 바꾼 col 이 그대로 남아있다는 등 ... )
+
+   -> 즉, update 는 개발 시에는 굉장히 편리하지만, 운영 시에는 사용하지 않도록 한다.
+
+   **
+   -> 만약 schema 와 데이터를 더 체계적으로 관리하고 싶다면 db 마이그레이션 툴을 사용하도록 한다.
 
 */
 
