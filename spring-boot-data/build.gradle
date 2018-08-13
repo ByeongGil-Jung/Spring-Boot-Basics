@@ -34,6 +34,9 @@ dependencies {
     // 'MariaDB connector' dependency 추가
     compile('org.mariadb.jdbc:mariadb-java-client')
 
+    // entityManagerFactory 에러 해결용 dependency
+    compile('javax.xml.bind:jaxb-api')
+
     runtime('org.springframework.boot:spring-boot-devtools')
     runtime('com.h2database:h2')
     testCompile('org.springframework.boot:spring-boot-starter-test')

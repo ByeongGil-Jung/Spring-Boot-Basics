@@ -99,6 +99,26 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
    즉, SDJ 를 사용하면 Datasource 의 method 뿐만 아니라, Hibernate 및 JPA 의 기능까지 모두 사용할 수 있는 것이다.
 
+
+[ 5. Spring Data JPA (SDJ) 연동 ]
+
+ (여기선 lombok 을 사용하지 않는다고 가정한다)
+
+ (JPA 사용하기 - jpa package 참조)
+ 1. @Entity 클래스를 만든다.
+ 2. Repository 만들기
+
+ (Repository Test 만들기)
+ 1. H2 DB 를 테스트 dependency 에 추가하기
+ 2. @DataJpaTest (슬라이스 테스트) 작성
+
+ ++)
+  @SpringBootTest 를 통해 Test 할 수 도 있는데,
+  이는 모든 bean 설정을 사전에 스캔하기 때문에 H2 가 아닌 MariaDB 로 테스트를 하게 된다.
+
+  -> 이 방법은 테스트에서 데이터 변화가 일어날 경우, 실제 Application 의 데이터에도 변화가 일어난다.
+  -> 따라서 In-memory DB 인 H2 를 이용하는 것이 테스트 상 안전하다.
+
 */
 
 @SpringBootApplication
