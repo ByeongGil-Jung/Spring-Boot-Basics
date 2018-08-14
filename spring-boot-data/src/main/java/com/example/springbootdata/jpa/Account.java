@@ -26,6 +26,9 @@ public class Account {
 
     private String password;
 
+    // Flyway 관리 후, 새로운 data 생성. (즉, col 이 하나 늘어남)
+    private boolean active;
+
     // 만약 Lombok 을 사용하면 아래와 같은 getter, setter 작업은 안해도 된다.
     public Long getId() {
         return id;
@@ -51,18 +54,28 @@ public class Account {
         this.password = password;
     }
 
+    // 새로운 data
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Account account = (Account) o;
-        return Objects.equals(id, account.id) &&
+        return active == account.active &&
+                Objects.equals(id, account.id) &&
                 Objects.equals(username, account.username) &&
                 Objects.equals(password, account.password);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, password);
+        return Objects.hash(id, username, password, active);
     }
 }

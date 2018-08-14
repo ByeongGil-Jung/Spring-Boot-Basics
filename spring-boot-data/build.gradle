@@ -37,6 +37,9 @@ dependencies {
     // entityManagerFactory 에러 해결용 dependency
     compile('javax.xml.bind:jaxb-api')
 
+    // Flyway dependency 추가
+    compile('org.flywaydb:flyway-core')
+
     runtime('org.springframework.boot:spring-boot-devtools')
     runtime('com.h2database:h2')
     testCompile('org.springframework.boot:spring-boot-starter-test')

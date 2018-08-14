@@ -175,6 +175,52 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
    **
    -> 만약 schema 와 데이터를 더 체계적으로 관리하고 싶다면 db 마이그레이션 툴을 사용하도록 한다.
 
+
+[ 7. 데이터베이스 마이그레이션 ]
+- jpa 패키지에서 계속 진행
+- 여기선 DB 마이그레이션 툴로 Flyway 를 사용할 것
+
+ - DB 마이그레이션 툴 ?
+   :: DB schema 변경이나, 데이터 변경을 버전 관리하듯이 차곡차곡 sql 파일로 관리할 수 있다. (DB 의 Git)
+   (Flyway, Liquibase 가 대표적이지만, 여기선 Flyway 를 사용할 것)
+
+ 1. 의존성 추가
+   >> compile('org.flywaydb:flyway-core')
+
+ 2. 마이그레이션 directory
+   - db/migration 또는 db/migration/{vendor}
+     (ex : db/migration/mariaDB)
+   - spring.flyway.locations 로 path 변경 가능
+
+ (순서)
+  (1) directory 아래에 V1__init.sql 과 같이 만듦. (처음에 V + 숫자 + __ )
+  (2) spring.jpa.hibernate.ddl-auto=validate 로 변경
+
+ (sql 파일 이름 ?)
+  - V + 숫자 + __ + 이름 .sql
+  - V 는 꼭 대문자로
+  - 숫자는 순차적으로 (타임스탬프 권장)
+  - 숫자와 이름 사이에 언더바 두 개
+  - 이름은 가능한 서술적으로
+
+ (validation 검증 과정)
+  flyway 를 먼저 실행 -> 마이그레이션 directory 내의 sql 문 실행 -> hibernate 가 validation 함)
+
+
+ - app 실행 시 생기는 'flyway_schema_history' 라는 schema ?
+   :: flyway 가 자기 정보를 관리하는 table 이다.
+      (어떤 sql 은 언제 실행 됐고, 언제 성공적으로 끝났는가, 등등 ... )
+
+ ...
+
+ - 그렇다면 중간에 새로운 col 을 추가하는 등의 schema 변화를 주고 싶다면 ?
+
+  -> 한 번 적용이 된 migration sql 파일은 절대 건드려선 안된다 !
+  -> 반드시 V2__add_active.sql 과 같이 새로운 version 의 sql 을 생성해야 한다.
+  (col 변경 뿐 아니라, INSERT 등 모든 sql 문이 가능하다.)
+
+  (flyway_schema_history 를 보면 알겠지만, 다 version 관리 되어있다.)
+
 */
 
 @SpringBootApplication
