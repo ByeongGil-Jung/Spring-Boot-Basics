@@ -30,5 +30,8 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
     runtime('org.springframework.boot:spring-boot-devtools')
     testCompile('org.springframework.boot:spring-boot-starter-test')
+
+    // 아래 test 용 security dependency 를 추가해주면 test 에서도 사용할 수 있다.
+    // (spring-security 를 프로젝트 생성 시에 설정하면 자동으로 추가되어 있다.)
     testCompile('org.springframework.security:spring-security-test')
 }
