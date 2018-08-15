@@ -28,7 +28,15 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-security')
     compile('org.springframework.boot:spring-boot-starter-thymeleaf')
     compile('org.springframework.boot:spring-boot-starter-web')
+    
+    // jpa dependency 추가
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    
     runtime('org.springframework.boot:spring-boot-devtools')
+
+    // h2 dependency 추가
+    runtime('com.h2database:h2')
+
     testCompile('org.springframework.boot:spring-boot-starter-test')
 
     // 아래 test 용 security dependency 를 추가해주면 test 에서도 사용할 수 있다.

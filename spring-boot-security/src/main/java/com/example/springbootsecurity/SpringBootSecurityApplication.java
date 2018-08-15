@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /*
 
-[1. Spring Security ]
+[ 1. Spring Security ]
 
  (1) Spring Security 란 ?
   :: 모든 요청이 spring-security 로 인해 인증을 필요로 한다. (Test 역시 마찬가지)
@@ -61,6 +61,68 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  (예제)
  여기선 /board 는 모두가 볼 수 있도록 하고,
  /my 는 로그인 한 사람만 볼 수 있도록 하기
+
+
+[ 2. Spring Security Customizing ]
+ - 저번의 예제에서 발전시키도록 한다.
+ (/my2 로 가는 요청만 authentication 이 필요하도록 만들 것임)
+
+  (1) Web Security 설정
+
+   - Security 설정을 여기서 할 것임.
+     >> WebSecurityConfig
+
+      ** 중요 ! **
+    -> WebSecurityConfigurerAdapter 을 상속받는 이 클래스 (WebSecurityConfig) 를 bean 으로 만듦으로써
+       더 이상 spring-security 에서 제공하는 SecurityAutoConfiguration 은 사용이 안된다 !
+
+    -> 즉, 이제부터 WebSecurityConfiguration 설정은 여기서 맡게 된다 !
+
+
+  (2) UserDetailsService 구현
+
+   - 실제론 user 정보를 관리자가 직접 관리하지, spring-security 가 만들어준 user 정보를 활용하진 않음.
+     >> 따라서 이 부분을 custromizing 할 것임.
+     (account 패키지 참조)
+
+   - 여기까지 하고 username, password 를 입력하면 아마 error 가 날 것임.
+     -> password 의 encoding 이 다르기 떄문이므로, (3) 의 과정을 이행해야 한다.
+
+
+  (3) PasswordEncoder 설정 및 사용
+
+   - 다양한 encoding 방법이 존재한다 !
+     (spring-security 는
+       >> PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+      의 사용을 권장한다.)
+
+   (1) Noop encoding (password encoding 을 안하는 방식)
+     (사실, security encoding 을 하지 않고 password 를 그대로 db 에 넣는 것은 아주 아주 아주 위험하다 !
+      -> db 에 password 가 바로 노출되어 저장되기 때문 !)
+
+   (2) PasswordEncoderFactories.createDelegatingPasswordEncoder()
+     -> spring-security 에서 권장하는 방법
+
+     > WebSecurityConfig 에서 다음과 같이 설정한다.
+
+     @Bean
+     public PasswordEncoder passwordEncoder() {
+         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+     }
+
+     > 이후 db 에 insert 하는 작업에서,
+       passwordEncoder.encode(password) 로 encoding 한 후 넣어야 한다.
+
+
+ - 위의 것들은 기본적인 내용이다.
+   spring-security 를 견고하게 하기 위해선, 알아야 할 내용이 더 많다.
+
+   >> 어떤 요청들을 security 로 처리 할 것인지 ...
+   >> CSRF 설정을 한다든지 ...
+   >> 인증 방식으로 OAuth 를 사용 한다든지 ...
+
+   >> REST-API 를 통해 전달받은 값으로 유저 정보를 입력하는 방식도 필요할 것이고 ...
+   >> Form 인증 화면도 customizing 할 필요가 있고 ...
 
  */
 
