@@ -21,7 +21,7 @@ public class PizzaController {
     // HttpMessageConverter 사용
     @PostMapping("/pizzas/create")
     /*
-    public @ResponseBody Pizza create(@RequestBody Pizza home) {
+    public @ResponseBody Pizza create(@RequestBody Pizza pizza) {
 
     원래는 이 형식인데,
     @RestController 가 붙은 상황에서는,
