@@ -221,6 +221,21 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
   (flyway_schema_history 를 보면 알겠지만, 다 version 관리 되어있다.)
 
+
+[ 8. 정리 ]
+
+ (SQL 지원 DB)
+ - Spring JDBC 만 있으면, JDBC 템플릿을 bean 으로 만들어 주기에 손쉽게 사용 가능하다.
+ - DataSource 를 application.properties 에서 설정하는 것이 아주 중요하다.
+ - In-memory DB (H2 등) 를 개발 시 유용하게 활용하는 것이 중요하다. (특히 Test ! )
+ - prod 버전에서 활용하기 위해선, HikariDB connection pool 을 사용하는 것이 편리하다.
+   (DataSource 는 실제 prod DB 에 많이 쓰이는 MySQL, MariaDB 등등을 사용할 것 ... )
+ - Entity Class 와 mapping 해서 사용하는 것이 중요하다.
+ - Repository Class 를 만들어서 사용하는 것이 편리하다.
+ - 데이터베이스 초기화의 설정을 잘 해주어 dev / prod 상황에서 잘 운용하도록 한다.
+   (spring.dpa.hibernate.ddl-auto=create-drop 등등 ... )
+
+
 */
 
 @SpringBootApplication
