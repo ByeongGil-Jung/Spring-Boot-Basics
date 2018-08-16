@@ -26,6 +26,10 @@ repositories {
 
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
+
+    // WebClient 를 쓰기 위해선 WebFlux dependency 가 필요함
+    compile('org.springframework.boot:spring-boot-starter-webflux')
+
     runtime('org.springframework.boot:spring-boot-devtools')
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
