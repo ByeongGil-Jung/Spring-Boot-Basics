@@ -1,5 +1,6 @@
 package com.example.springbootactuator;
 
+import de.codecentric.boot.admin.server.config.EnableAdminServer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -61,7 +62,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
  - VisualVM
    (JCondole 보다 눈으로 보기 편함. 게다가 plugin 을 지원함.
-    하지만 java 10 부터 지원을 안해서 따로 깔아야 함 ... )
+    그런데 개인적으로 JConsole 과 별다른 차이가 없다. (있다 해도 칼라라는 점)
+    게다가 java 10 부터 지원을 안해서 따로 깔아야 함 ... )
 
 
  - HTTP
@@ -72,9 +74,60 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
     (하지만 보안상의 이슈가 되므로 되도록 하지 않는 것이 좋다.)
 
 
+[ 3. Spring Boot Admin ]
+
+  :: Spring 에서 제공하는 application 이 아닌,
+     제 3자가 따로 만든 오픈소스 web tool 이다.
+
+
+ 1. Admin 서버 설정
+   :: Admin 서버 역할을 할 application 이 필요하다.
+      (여기선 현재 프로젝트를 사용할 것)
+
+   (1) 의존성 주입
+    >> compile('de.codecentric:spring-boot-admin-starter-server:2.0.2')
+
+   (2) 어노테이션 설정
+    ServerApplication 에 @EnableAdminServer 어노테이션을 붙어야 한다.
+
+   포트는 겹치면 안되므로 일단 8008 로 바꾸도록 한다 ...
+
+
+ 2. 클라이언트 설정
+   (여기선 spring-boot-web-mvc 프로젝트를 사용할 것)
+
+   (1) 의존성 주입
+    >> compile('de.codecentric:spring-boot-admin-starter-client:2.0.2')
+
+   (2) 설정 방법 (택 1)
+    - 1. 클라이언트 library 를 사용해서 설정 (위의 dependency 를 이용 하여 property 값 수정)
+    - 2. spring cloud 사용해서 discovery 되도록 사용
+
+    여기선 '1. 클라이언트' 방법 사용.
+    (-> spring-boot-start 프로젝트의 application.properties 참조)
+
+    이후 application.properties 설정.
+
+   (3) client 의 endpoints 정보가 출력되어야 하므로, expose 시킨다.
+       (하지만 보안상의 이슈가 있으므로 반드시 security 설정을 해 놓는다.)
+
+     >> management.endpoints.web.exposure.include=*
+
+   (4) client application 이 접속할 admin server 의 주소를 설정한다.
+
+     >> spring.boot.admin.client.url=http://localhost:8008
+
+
+ - JMX 나 일반 HTML 에서 보이는 것보다 훨씬 이쁘게 보인다.
+ - 역시 보안상의 이슈가 있으므로 security 설정을 해주어야 한다.
+ - app 작동 중에 log level 등을 실시간으로 바꿀 수 있다.
+
+ (원리는, jolokia 를 이용해서 JMX 를 HTTP 에서 볼 수 있게 한 것이다.)
+
  */
 
 @SpringBootApplication
+@EnableAdminServer
 public class SpringBootActuatorApplication {
 
     public static void main(String[] args) {

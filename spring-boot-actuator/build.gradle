@@ -28,6 +28,11 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-actuator')
     compile('org.springframework.boot:spring-boot-starter-thymeleaf')
     compile('org.springframework.boot:spring-boot-starter-web')
+
+    // 서버용 admin dependency 추가
+    // spring-boot-admin-starter-server dependency 추가
+    compile('de.codecentric:spring-boot-admin-starter-server:2.0.2')
+
     runtime('org.springframework.boot:spring-boot-devtools')
     runtime('com.h2database:h2')
     testCompile('org.springframework.boot:spring-boot-starter-test')

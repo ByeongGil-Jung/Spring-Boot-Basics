@@ -47,6 +47,12 @@ dependencies {
     // hateoas 추가
     compile('org.springframework.boot:spring-boot-starter-hateoas')
 
+    // [ Spring Boot Admin Client ]
+    // 클라이언트 용 admin dependency 추가
+    // spring-boot-admin-starter-client dependency 추가
+    compile('de.codecentric:spring-boot-admin-starter-client:2.0.2')
+
+
     // HtmlUnit 의존성 추가 (in test)
     testCompile('org.seleniumhq.selenium:htmlunit-driver')
     testCompile('net.sourceforge.htmlunit:htmlunit')
