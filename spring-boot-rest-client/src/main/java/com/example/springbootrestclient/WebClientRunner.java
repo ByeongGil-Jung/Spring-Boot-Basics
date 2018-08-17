@@ -69,6 +69,8 @@ public class WebClientRunner implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
         WebClient webClient = builder
+                // 커스터마이징 ...
+                // .baseUrl("http://localhost:8080")
                 .build();
 
         System.out.println("\n=== [ 2. WebClient (Asynchronous) ] ===");
@@ -83,7 +85,7 @@ public class WebClientRunner implements ApplicationRunner {
         (아직 body 의 값을 string 으로 변환하는 작업은 안 일어남)
         uri 를 webClient 로 get 요청
         */
-        Mono<String> helloMono = webClient.get().uri("http://localhost:8080/hello")
+        Mono<String> helloMono = webClient.get().uri("/hello")
                 // 결과값을 가져옴
                 .retrieve()
                 // Mono type 으로 변경
@@ -101,7 +103,7 @@ public class WebClientRunner implements ApplicationRunner {
         });
 
         // TODO /world 호출
-        Mono<String> worldMono = webClient.get().uri("http://localhost:8080/world")
+        Mono<String> worldMono = webClient.get().uri("/world")
                 .retrieve()
                 .bodyToMono(String.class);
 

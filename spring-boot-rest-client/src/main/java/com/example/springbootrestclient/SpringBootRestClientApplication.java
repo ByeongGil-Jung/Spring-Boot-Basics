@@ -35,6 +35,51 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
     >> WebClientRunner 클래스 참조
 
 
+[ 2. RestClient 커스터마이징 ]
+
+ (1) RestTemplate
+  - 기본적으로 java.net.HttpURLConnection 사용
+  - 커스터마이징 ?
+    - 로컬 커스터마이징
+      ( > WebClientRunner 클래스 참조)
+    - 글로벌 커스터마이징
+      ( > RestClientConfiguration 참조)
+      >> RestTemplateCustomizer
+      >> 빈 재정의
+
+ (2) WebClient
+  - 기본으로 Reactor Netty 의 HTTP Client 사용
+  - 커스터마이징 ?
+    - 로컬 커스터마이징
+      ( > RestTemplateRunner 클래스 참조)
+    - 글로벌 커스터마이징
+      ( > RestClientConfiguration 참조)
+      >> WebClientCustomizer
+      >> 빈 재정의
+
+ =======================================================================
+
+ - 사실 customizing 을 하지 않아도 크게 문제는 없다.
+ - defaultCookie, defaultHeader 등등 ... 설정 가능
+
+ >> builder ~ .build() 사이에 여러가지 설정을 할 수 있다.
+    (이것은 지역적으로 customizing 하는 방법)
+
+ -> 그렇다면 전역적으로 customizing 하는 방법은 ?
+
+ =======================================================================
+
+ < 전역적으로 customizing >
+
+ (RestTemplate)
+ 1. HttpClient dependency 주입 (이를 통해 Apache 의 HttpClient 를 사용하게 된다.)
+  >> compile('org.apache.httpcomponents:httpclient')
+ 2. RestTemplateCustomizer 를 반환하는 Bean 을 하나 만들어 주입시킨다 !
+
+ (WebClient)
+ 1. WebClientCustomizer 를 반환하는 Bean 을 하나 만들어 주입시킨다 !
+
+
  */
 
 @SpringBootApplication

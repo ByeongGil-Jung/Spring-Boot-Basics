@@ -53,7 +53,7 @@ public class RestTemplateRunner implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
         RestTemplate restTemplate = restTemplateBuilder
-                // 여러가지 설정을 줄 수 있다 ...
+                // 여러가지 설정을 줄 수 있다 ... (커스터마이징)
                 .build();
 
         // StopWatch 를 만들어서 시간을 재보자

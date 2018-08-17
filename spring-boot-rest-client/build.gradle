@@ -30,6 +30,10 @@ dependencies {
     // WebClient 를 쓰기 위해선 WebFlux dependency 가 필요함
     compile('org.springframework.boot:spring-boot-starter-webflux')
 
+    // RestTemplate 를 customizing 하기 위해 필요한
+    // HttpClient dependency 주입
+    compile('org.apache.httpcomponents:httpclient')
+
     runtime('org.springframework.boot:spring-boot-devtools')
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
