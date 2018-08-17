@@ -38,15 +38,39 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
       (보안적인 이슈 때문)
 
 
-  * 공개하기 위해선,
+  * WEB 에서 expose 하기 위해선,
     >> management.endpoints.web.exposure.include=*
     >> management.endpoints.web.exposure.exclude=env,beans
 
     의 설정을 주어야 한다 !
+    (하지만 보안상의 이슈가 되므로 되도록 하지 않는 것이 좋다.)
+
+
+ [ 2. Actuator - JMX 와 HTTP ]
+
+ :: JMX 를 통해서 actuator 가 제공하는 expose 된 endpoints 를 볼 수 있다.
 
  - JConsole
+   (java 에서 제공하는 기본적인 console)
+   >> command 에 jconsole 입력.
+      (윈도우는 환경 변수 설정되어 있어야 함)
+
+   >> endpoints 를 비롯하여, cpu 사용량, thread 사용량 등등 ...
+      jvm 관련 다양한 정보들을 볼 수 있음.
+      (나중에 써먹을 것 !)
+
  - VisualVM
+   (JCondole 보다 눈으로 보기 편함. 게다가 plugin 을 지원함.
+    하지만 java 10 부터 지원을 안해서 따로 깔아야 함 ... )
+
+
  - HTTP
+    >> management.endpoints.web.exposure.include=*
+    >> management.endpoints.web.exposure.exclude=env,beans
+
+    의 설정을 주고 /actuator 접속
+    (하지만 보안상의 이슈가 되므로 되도록 하지 않는 것이 좋다.)
+
 
  */
 
